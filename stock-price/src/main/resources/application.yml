@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: stock-service
+  cloud:
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}.${random.uuid}
+    loadbalancer:
+      ribbon:
+        enabled: false
+server:
+  port: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - '*'

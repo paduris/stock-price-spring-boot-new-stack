@@ -1,0 +1,21 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}.${random.value}
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: intel
+          uri: lb://intel-service
+          predicates:
+            - Path="/intel-service/**
+logging:
+  level:
+    org.springframework: debug
