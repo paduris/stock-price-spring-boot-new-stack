@@ -21,8 +21,18 @@ spring:
             - RewritePath=/intel/(?<path>.*), /$\{path}
             - name: CircuitBreaker
               args:
-                name: sampleSlowCircuitBreaker
+                name: serviceDownCircuitBreaker
                 fallbackUri: forward:/fallback/test
+        - id: google-service
+          uri: lb://intel-service
+          predicates:
+           - Path=/google/**
+          filters:
+            - RewritePath=/google/(?<path>.*), /$\{path}
+            - name: CircuitBreaker
+              args:
+               name: slowCircuitBreaker
+               fallbackUri: forward:/fallback/test
     loadbalancer:
       ribbon:
         enabled: false
