@@ -1,5 +1,6 @@
 server:
   port: 7000
+
 spring:
   application:
     name: gateway-service
@@ -12,10 +13,27 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: intel
+        - id: intel-service
           uri: lb://intel-service
           predicates:
-            - Path="/intel-service/**
+            - Path=/intel/**
+          filters :
+            - RewritePath=/intel/(?<path>.*), /$\{path}
+            - name: CircuitBreaker
+              args:
+                name: sampleSlowCircuitBreaker
+                fallbackUri: forward:/fallback/test
+    loadbalancer:
+      ribbon:
+        enabled: false
 logging:
   level:
     org.springframework: debug
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

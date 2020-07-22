@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.paduris.git.intell.stock</groupId>
-    <artifactId>intell-stock</artifactId>
+    <artifactId>intel-stock</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>intell-stock</name>
+    <name>intel-stock</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

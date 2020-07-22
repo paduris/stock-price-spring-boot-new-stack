@@ -49,7 +49,7 @@ public class IntelStockApplication {
                             .headQuatersLocation("Santa Clara, California")
                             .companyName("Intel Corporation")
                             .providedByServiceName("Intel Serivce")
-                            .otherMessage(" This respose coming from server with port :: "+ environment.getProperty("local.server.port"))
+                            .otherMessage(" This response coming from server with port :: "+ environment.getProperty("local.server.port"))
                             .stockData(map)
                             .build());
         }
